@@ -12,14 +12,14 @@ def register(request):
             username = form.cleaned_data.get('username')
            
             form.save()
-            messages.success(request,f'Account has been created. You can now apply for admission')
-            return redirect('admit')
+            messages.success(request,f'Account has been created. You can now apply for admission after logging in')
+            return redirect('login')
         
     else:
          form = UserRegisterForm()
     return render(request, 'student/register.html', {'form': form })
 
-
+@login_required
 def admit(request):
     if request.method == 'POST':
         form = Studentform(request.POST, request.FILES)
