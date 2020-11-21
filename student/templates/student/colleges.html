@@ -5,8 +5,8 @@
 {% block content %}
     {% for college in colleges %}
         <div class="container-fluid" >
-            <ul>{{college.name}}</a></ul>
-            <a href="#" class="btn btn-primary btn-lg " role="button">Apply</a>
+            <ul><h3 class="pt-5">{{college.name}}</h3></ul>
+            <a href="/apply/{{id}}/{{ college.name }}/" class="btn btn-primary btn-lg ml-5 " role="button">Apply</a>
         </div>
     {% endfor %}
 {% endblock content %}

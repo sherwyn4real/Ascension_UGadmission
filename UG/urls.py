@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from student import views as stu_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('UGapp.urls') ),
@@ -28,7 +29,9 @@ urlpatterns = [
     path('admit/', stu_views.admit, name='admit'),
     path('courses/', stu_views.courses, name='courses'),
     path('logout/',auth_views.LogoutView.as_view(template_name='student/logout.html'), name='logout'),
-    path('colleges/<int:id>/',stu_views.colleges, name='colleges')
+    path('colleges/<int:id>/',stu_views.colleges, name='colleges'),
+    path('apply/<int:id>/<str:clg>/', stu_views.apply, name='apply'),
+    path('college/', include('college.urls'))
 ]
 
 

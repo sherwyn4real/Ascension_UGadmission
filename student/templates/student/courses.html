@@ -5,7 +5,7 @@
 {% block content %}
     {% for course in courses %}
         <div class="container-fluid" >
-            <ul><a href="/colleges/{{ course.id }}" class="btn btn-primary btn-lg " role="button">{{course.info}}</a></ul>
+            <ul><a href="/colleges/{{ course.id }}" class="btn btn-primary btn-lg pl-4" role="button">{{course.info}}</a></ul>
         </div>
     {% endfor %}
 {% endblock content %}

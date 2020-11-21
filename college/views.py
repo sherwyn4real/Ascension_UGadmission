@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from college.models import Course,userCollege
@@ -12,12 +12,8 @@ class CourseListView(generic.ListView):
 class CollegeListView(generic.ListView):
     model = userCollege
 
-# Create your views here.
-def login(request):
-    return render(request,'college/login.html')
-
 def signin_page(request):
-    return render(request,'college/login2.html')
+    return render(request,'college/login2.html',context={})
 
 def signin(request):
     username = request.POST['uname']
@@ -25,29 +21,27 @@ def signin(request):
     user = authenticate(request,username=username,password=passw)
     if user is not None:
         sign(request,user)
-        return HttpResponseRedirect('/college/home/')
+        return redirect('college_home')
     else:
-        return HttpResponse('Error Invalid Login')
+        message = {'form':True}
+        return render(request,'college/login2.html',message)
 
-@login_required
+@login_required(login_url='/college/log')
 def home(request):
     logged_user = request.user
-    username = logged_user.username
-    college = userCollege.objects.get(username=username)
-    info ={
-        'college':college
-    }
-    return render(request,'college/choose-college.html',info)
-    # get email, password
-    # if mathches in data base
-        # get all info from DB
-        # return homepage, pass DB
-    # else
-        # return login page with message(invalid credentials)
-    #return render(request,'college/home.html')
+    if(logged_user.is_authenticated == True):
+        usn = logged_user.username
+        college = userCollege.objects.all().get(username=usn)
+        info ={
+            'college':college,
+            'courses':college.course.all()
+        }
+        return render(request,'college/choose-course.html',info)
+    else:
+        return render(request,'college/login2.html')
 
-@login_required
+
+@login_required(redirect_field_name='signin_page')
 def details(request):
     if(request.method=='POST'):
         return None
-

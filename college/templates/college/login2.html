@@ -1,9 +1,24 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "college/base.html" %}
+{% block title %}Login College{% endblock title %}
+{% block content %}
 
-<h1>Login Page</h1>
+<div class="container">
+  <h2 class="pt-3">College Login</h2>
+  <form action="{% url 'signin' %}" method='post'> {% csrf_token %}
+    <div class="form-group col-5">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" placeholder="Enter username" name="uname">
+    </div>
+    <div class="form-group col-5">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" placeholder="Enter password" name="password">
+    </div>
+  
+    <button type="submit" class="btn btn-primary ml-3" value="Login" >Login</button>
+  </form>
+</div>
 
+<!--
 <form action="{% url 'signin' %}" method="post">{% csrf_token %}
   <label for="username">Username:</label>
   <input type="text" name="uname"><br><br>
@@ -11,6 +26,5 @@
   <input type="text" name="password"><br><br>
   <input type="submit" value="Login">
 </form>
-
-</body>
-</html>
+-->
+{% endblock %}

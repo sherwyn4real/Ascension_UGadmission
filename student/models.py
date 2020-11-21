@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 
 class Data(models.Model):
+    usn = models.CharField(max_length=20)
     first_name = models.CharField(max_length=20)
     middle_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
@@ -19,6 +20,8 @@ class Data(models.Model):
     neetbio = models.IntegerField()
     neetrank = models.IntegerField()
     FILE = models.FileField(upload_to = 'student_files')
+    chosen_college = models.CharField(max_length=30)
+    chosen_course = models.CharField(max_length=20)
     
     def put(self):
         return self.first_name

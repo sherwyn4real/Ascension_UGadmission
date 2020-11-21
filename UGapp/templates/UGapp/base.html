@@ -49,7 +49,7 @@
                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     <!--<a class="dropdown-item" href="#">Student admission</a>!-->
                 {% else %}
-                    <a class="dropdown-item" href="#">Institute Login</a>
+                    <a class="dropdown-item" href="/college/log">Institute Login</a>
                     <a class="dropdown-item" href="{% url 'login' %}">Student login</a>
                     <a class="dropdown-item" href="{% url 'register' %}">Student Registration</a>
                 {% endif %}
@@ -67,7 +67,7 @@
             </ul>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{% static 'UGapp/home.jpeg' %}" alt="quote" width="1100" height="500">
+                <img src="{% static 'UGapp/home3.jpeg' %}" alt="quote" width="1100" height="500">
                 <div class="carousel-caption">
                   <h3>"A mind is a fire to be kindled, not a vessel to be filled."</h3>
                   <p>-Plutarch</p>
@@ -105,7 +105,7 @@
                 {% else %}
                     <a href="{% url 'admit' %}" class="btn btn-primary btn-lg " role="button">Student Admission</a>
                     <a href="{% url 'login' %}" class="btn btn-primary btn-lg " role="button">Student Login</a>
-                    <a href="#" class="btn btn-primary btn-lg " role="button">Institute Registration</a> 
+                    <a href="/college/log" class="btn btn-primary btn-lg " role="button">Institute Registration</a> 
                 {% endif %}
                 
             </div>    

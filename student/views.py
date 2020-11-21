@@ -3,13 +3,15 @@ from django.contrib import messages
 from .forms import UserRegisterForm,Studentform
 from django.contrib.auth.decorators import login_required
 from college.models import *
+from .models import Data
 
 def register(request):
     if request.method== 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data.get('username')
+           
+            form.save()
             messages.success(request,f'Account has been created. You can now apply for admission')
             return redirect('admit')
         
@@ -42,10 +44,21 @@ def colleges(request, id):
     c = Course.objects.get(id=id)
     college = userCollege.objects.all()
     clg = college.filter(course=c)
-    info = {'colleges': clg}
+    info = {'colleges': clg,
+            'id': id}
 
     return render(request, 'student/colleges.html', context=info )
 
+@login_required
+def apply(request, id, clg):
+
+    dic= { 'id': id,
+            'clg':clg
+    }
+    student_data = Data.objects.all()
+
     
+    return render(request, 'student/apply.html', context=dic)
+
 
 
