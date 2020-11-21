@@ -2,7 +2,6 @@ from django.db import models
 from django.forms import ModelForm
 
 class Data(models.Model):
-    usn = models.CharField(max_length=20)
     first_name = models.CharField(max_length=20)
     middle_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)

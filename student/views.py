@@ -10,7 +10,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-           
             form.save()
             messages.success(request,f'Account has been created. You can now apply for admission after logging in')
             return redirect('login')
