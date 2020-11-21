@@ -1,0 +1,15 @@
+{% extends "UGapp/base.html" %}
+{% load crispy_forms_tags %}
+{%block title%}Admission Form{%endblock title%}
+
+{% block content %}
+<div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- <h2 class=" pt-3 pb-2 pl-4">Personal Information</h2> enctype="multipart/form-data" -->
+        {{form|crispy}}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}
+

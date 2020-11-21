@@ -1,0 +1,12 @@
+{% extends "UGapp/base.html" %}
+
+{%block title%}Courses{%endblock title%}
+
+{% block content %}
+    {% for college in colleges %}
+        <div class="container-fluid" >
+            <ul>{{college.name}}</a></ul>
+            <a href="#" class="btn btn-primary btn-lg " role="button">Apply</a>
+        </div>
+    {% endfor %}
+{% endblock content %}
